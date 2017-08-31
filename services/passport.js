@@ -15,7 +15,7 @@ passport.deserializeUser((id, done) => {
   });
 });
 
-passport.user(new GoogleStrategy({
+passport.use(new GoogleStrategy({
   clientID: keys.googleClientID,
   clientSecret: keys.googleClientSecret,
   callbackURL: '/auth/google/callback',
@@ -25,7 +25,7 @@ passport.user(new GoogleStrategy({
   if (existingUser) {
     done(null, existingUser);
   } else {
-    const User = await new User({googleID: profile.id}).save()
+    const user = await new User({googleID: profile.id}).save()
     done(null, user)
   }
 }));
