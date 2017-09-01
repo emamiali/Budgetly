@@ -3,10 +3,11 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import Header from './Header'
-const Landing = () => <h1>This is the landing page</h1>
+import Header from './Header';
+import Landing from './Landing';
 const Dashboard = () => <h1>Dashboard</h1>
 const NewSpending = () => <h1>Form for new spending</h1>
+const Profile = () => <h1>Profile Page</h1>
 
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/dashboard" component={Dashboard}/>
             <Route exact path="/spending/new" component={NewSpending} />
+            <Route exact path="profile" component={Profile} />
           </div>
         </BrowserRouter>
       </div>
