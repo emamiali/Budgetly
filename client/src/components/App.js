@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-const Header = () => <p>Header</p>
+import Header from './Header'
 const Landing = () => <h1>This is the landing page</h1>
 const Dashboard = () => <h1>Dashboard</h1>
 const NewSpending = () => <h1>Form for new spending</h1>
