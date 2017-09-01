@@ -6,7 +6,7 @@ const keys = require('./config/keys');
 require('./models/User');
 require('./services/passport');
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect('mongodb://localhost/budgetly'); //change this later when you have a good connection or add the app timeout function. 
 
 const app = express();
 
