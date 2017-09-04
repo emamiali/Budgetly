@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
-  googleID: String
+const userSchema = new Schema({
+  googleID: String,
+  name: String,
+  totalBudget: Number,
+  totalSavings: Number
 });
 
-mongoose.model('users', UserSchema);
+mongoose.model('users', userSchema);
