@@ -5,8 +5,9 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from './Landing';
-const Dashboard = () => <h1>Dashboard</h1>
+import Dashboard from './budget/Dashboard';
 const Profile = () => <h1>Profile Page</h1>
+const Button = () => <div><button>Add a new Bill</button><button>Add a new spending</button><button>Add savings</button></div>
 
 
 class App extends Component {
@@ -22,7 +23,8 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/dashboard" component={Dashboard}/>
-            <Route exact path="profile" component={Profile} />
+            <Route exact path="/profile" component={Profile} />
+            <Button />
           </div>
         </BrowserRouter>
       </div>
