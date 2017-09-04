@@ -6,7 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './budget/Dashboard';
-const Profile = () => <h1>Profile Page</h1>
+import Profile from './Profile'
 const Button = () => <div><button>Add a new Bill</button><button>Add a new spending</button><button>Add savings</button></div>
 
 
@@ -32,4 +32,4 @@ class App extends Component {
   }
 }
 
-export default connect(null,actions)(App);
+export default connect(null, actions)(App);

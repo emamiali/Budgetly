@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+
+//this.props gets auth after going thourgh the middleware redux-thunk
+
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
@@ -14,7 +17,7 @@ class Header extends Component {
       default:
         return(
           <div>
-            <li><a href="/api/profile">Profile</a></li>
+            <li><Link to='/profile'>Profile</Link></li>
             <li><a href="/api/logout">Logout</a></li>
           </div>
         );
