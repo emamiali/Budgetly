@@ -5,7 +5,7 @@ import BudgetContainer from './BudgetContainer';
 export default class Dashboard extends Component {
   render() {
     return (
-      <div>
+      <div className="center-align">
         <BudgetRings />
         <BudgetContainer />
       </div>

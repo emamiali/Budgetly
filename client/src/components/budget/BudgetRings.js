@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class BudgetRings extends Component {
   render() {
     return (
-      <div>
+      <div className='valign-wrapper'>
         <div>
           <p>Spending Ring</p>
         </div>
