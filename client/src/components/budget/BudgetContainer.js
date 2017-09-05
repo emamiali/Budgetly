@@ -11,10 +11,16 @@ class BudgetContainer extends Component {
   }
   render() {
     return (
-      <div>
-        <SpendingList />
-        <BillList />
-        <Savings />
+      <div className="valign-wrapper">
+        <div className="col s4">
+          <SpendingList />
+        </div>
+        <div className="col s4">
+          <BillList />
+        </div>
+        <div className="col s4">
+          <Savings />
+        </div>
       </div>
     );
   };

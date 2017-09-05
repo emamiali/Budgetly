@@ -7,8 +7,6 @@ import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './budget/Dashboard';
 import Profile from './Profile'
-const Button = () => <div><button>Add a new Bill</button><button>Add a new spending</button><button>Add savings</button></div>
-
 
 class App extends Component {
   componentDidMount() {
@@ -24,7 +22,6 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/dashboard" component={Dashboard}/>
             <Route exact path="/profile" component={Profile} />
-            <Button />
           </div>
         </BrowserRouter>
       </div>

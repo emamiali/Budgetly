@@ -5,7 +5,7 @@ class SpendingList extends Component {
   individualSpending(){
     switch (this.props.spendings) {
       case null:
-        return <p>No Bills</p>
+        return <p>No Spendings</p>
       case false:
         return <p>Something went wrong!!</p>
       default:
