@@ -13,7 +13,19 @@ class Profile extends Component {
       default:
         return (
           <div>
-            <p><strong>Name: </strong>{this.props.auth.googleID}</p>
+            <div className="row">
+              <div className="col s6">
+                Profile Pic here
+              </div>
+              <div className="col s6">
+                <p><strong>Name: </strong>Some name should go here</p>
+                <p><strong>Email: </strong></p>
+                <p><strong>Savings: </strong></p>
+                <p><strong>Total Earning: </strong></p>
+                <p><strong>Total Savings: </strong></p>
+              </div>
+            </div>
+            <button className="btn waves-effect">Edit Profile</button>
           </div>
         );
     }
