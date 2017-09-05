@@ -10,7 +10,7 @@ module.exports = (app) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-  app.get('/api/bills', function(req, res) {
+  app.get('/api/bills', requireLogin, function(req, res) {
     Bill
     .find({ _user: req.user_id })
     .exec( function(err, bills) {
@@ -40,7 +40,7 @@ app.use(bodyParser.json());
       });
   });
 
-  app.put('/api/bills/:bill_id', function(req, res) {
+  app.put('/api/bills/:bill_id', requireLogin, function(req, res) {
     let query = {
       _id: req.params.bill_id
     }
@@ -59,7 +59,7 @@ app.use(bodyParser.json());
       });
   });
 
-  app.delete('/api/bills/:bill_id', function(req, res) {
+  app.delete('/api/bills/:bill_id', requireLogin, function(req, res) {
     let query = {
       _id: req.params.bill_id
     }
