@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-const ListOfSpendings = [
-  { item: 'Rent', amount: 25, key: 1 },
-  { item: 'Gas', amount: 100, key: 2 },
-  { item: 'Car Payment', amount: 50, key: 3 },
-  { item: 'Insurance', amount: 75, key: 4 },
-]
-
-
-export default class SpendingList extends Component {
-  individualItem() {
-    return ListOfSpendings.map((spending) => {
-      return(
-        <div>
-          <h6>{spending.item}</h6>
-          <p>{spending.amount}</p>
-        </div>
-      );
-    });
+class SpendingList extends Component {
+  individualSpending(){
+    switch (this.props.spendings) {
+      case null:
+        return <p>No Bills</p>
+      case false:
+        return <p>Something went wrong!!</p>
+      default:
+        return this.props.spendings.map((spending) => {
+          return(
+            <div key={spending._id}>
+              <ul><strong>Title: </strong>{spending.spendingTitle}</ul>
+              <ul><strong>Amount: </strong>{spending.spendingAmount}</ul>
+            </div>
+          );
+        });
+    }
   }
   render() {
     return (
         <div>
-          {this.individualItem()}
+          {this.individualSpending()}
         </div>
     );
   };
 }
+
+function mapStateToProps(state) {
+  return { spendings: state.spendings}
+}
+
+export default connect(mapStateToProps)(SpendingList);

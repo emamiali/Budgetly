@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import SpendingList from './SpendingList';
 import BillList from './BillList';
-import Savings from './Savings'
+import Savings from './Savings';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 
-export default class BudgetContainer extends Component {
+class BudgetContainer extends Component {
+  componentDidMount(){
+    this.props.fetchBills()
+  }
   render() {
     return (
       <div>
@@ -14,3 +19,5 @@ export default class BudgetContainer extends Component {
     );
   };
 }
+
+export default connect(null, actions)(BudgetContainer);
