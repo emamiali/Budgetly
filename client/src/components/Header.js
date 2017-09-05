@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-
-//this.props gets auth after going thourgh the middleware redux-thunk
-
 class Header extends Component {
   renderContent() {
     switch (this.props.auth) {
