@@ -17,7 +17,7 @@ class BillList extends Component {
           <Link to={`/bills/${bill._id}`} >
             <strong>Title: </strong>{bill.billTitle}
             <br />
-            <strong>Amount: </strong>{bill.billAmount}
+            <strong>Amount: $</strong>{bill.billAmount}
           </Link>
         </li>
       );

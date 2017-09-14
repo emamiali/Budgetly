@@ -9,6 +9,12 @@ class BillShow extends Component {
     this.props.fetchBill(bill_id);
   }
 
+  onDeleteClick() {
+    const { bill_id } = this.props.match.params;
+    this.props.deleteBill(bill_id, () => {
+      this.props.history.push('/dashboard');
+    })
+  }
 
   render() {
     const { bill } = this.props;
@@ -20,6 +26,11 @@ class BillShow extends Component {
     return (
       <div>
         <Link to="/dashboard">{'<'} Back To Dashboard</Link>
+        <button
+          className="btn waves-light red"
+          onClick={this.onDeleteClick.bind(this)}
+        >
+        Delete Bill</button>
         <h3>Title: { bill.billTitle }</h3>
         <h4>Amount: {bill.billAmount}</h4>
       </div>
