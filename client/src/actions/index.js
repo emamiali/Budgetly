@@ -15,3 +15,8 @@ export const fetchSpendings = () => async dispatch => {
   const res = await axios.get('/api/spendings');
   dispatch({ type: FETCH_SPENDINGS, payload: res.data });
 }
+
+export const submitSpendings = () => async dispatch => {
+  const res = await axios.get('/api/spendings');
+  dispatch({ type: FETCH_SPENDINGS, payload: res.data });
+}
