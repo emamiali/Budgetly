@@ -1,29 +1,43 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchSpendings } from '../../../actions';
+
 
 class SpendingList extends Component {
-  individualSpending(){
-    switch (this.props.spendings) {
-      case null:
-        return <p>No Spendings</p>
-      case false:
-        return <p>Something went wrong!!</p>
-      default:
-        return this.props.spendings.map((spending) => {
-          return(
-            <div key={spending._id}>
-              <ul><strong>Title: </strong>{spending.spendingTitle}</ul>
-              <ul><strong>Amount: </strong>{spending.spendingAmount}</ul>
-            </div>
-          );
-        });
-    }
+  componentDidMount() {
+    this.props.fetchSpendings();
   }
+
+  renderSpendings() {
+    return _.map(this.props.spendings, spending => {
+      return (
+        <li className="collection-item" key={spending._id}>
+          <Link to={`/spendings/${spending._id}`} >
+            <strong>Title: </strong>{spending.spendingTitle}
+            <br />
+            <strong>Amount: $</strong>{spending.spendingAmount}
+          </Link>
+        </li>
+      );
+    });
+  }
+
   render() {
     return (
+      <div>
         <div>
-          {this.individualSpending()}
+          <ul className="collection">
+            {this.renderSpendings()}
+          </ul>
         </div>
+        <div>
+          <Link to="/spendings/new" className="waves-effect waves-light btn">
+            Add new spending
+          </Link>
+        </div>
+      </div>
     );
   };
 }
@@ -32,4 +46,4 @@ function mapStateToProps(state) {
   return { spendings: state.spendings}
 }
 
-export default connect(mapStateToProps)(SpendingList);
+export default connect(mapStateToProps, { fetchSpendings })(SpendingList);
