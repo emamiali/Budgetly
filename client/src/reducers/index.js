@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import authReducer from './authReducer';
 import billsReducer from './billsReducer';
 import spendingsReducer from './spendingsReducer'
@@ -6,5 +7,6 @@ import spendingsReducer from './spendingsReducer'
 export default combineReducers({
   auth: authReducer,
   bills: billsReducer,
-  spendings: spendingsReducer
+  spendings: spendingsReducer,
+  form: formReducer
 });
