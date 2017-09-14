@@ -49,9 +49,14 @@ class SpendingsNew extends Component {
           type="number"
           component={this.renderField}
         />
-
-        <button type="submit" className="btn waves-effect waves-light">Submit</button>
-        <Link to="/dashboard" className="btn btn-warning">Cancel</Link>
+        <div className="row">
+          <div className="left-align col s6">
+            <button type="submit" className="btn waves-effect waves-light">Submit</button>
+          </div>
+          <div className="right-align col s6">
+            <Link to="/dashboard" className="btn waves-light red">Cancel</Link>
+          </div>
+        </div>
       </form>
     );
   };

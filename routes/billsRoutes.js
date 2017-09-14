@@ -23,8 +23,9 @@ app.use(bodyParser.json());
 
   //add the authentication middleware so the req will have access to the user. and the user ID.
   app.post('/api/bills', function (req, res) {
-    console.log(req.body);
+
     const newBill = new Bill();
+
     newBill.billTitle = req.body.title;
     newBill.billAmount = req.body.amount;
 

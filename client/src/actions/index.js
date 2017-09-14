@@ -72,7 +72,7 @@ export function fetchSpending(spending_id) {
   const request = axios.get('/api/spendings/' + spending_id);
 
   return {
-    type: FETCH_BILL,
+    type: FETCH_SPENDING,
     payload: request
   }
 }

@@ -26,13 +26,17 @@ class SpendingShow extends Component {
     return (
       <div>
         <Link to="/dashboard">{'<'} Back To Dashboard</Link>
-        <button
-          className="btn waves-light red"
-          onClick={this.onDeleteClick.bind(this)}
-        >
-        Delete Spending</button>
-        <h3>Title: { spending.spendingTitle }</h3>
-        <h4>Amount: {spending.spendingAmount}</h4>
+        <div className="right-align">
+          <button
+            className="btn waves-light red"
+            onClick={this.onDeleteClick.bind(this)}
+          >
+          Delete Spending</button>
+        </div>
+        <div className="collection center-align">
+          <h3 className="collection-item">Title: { spending.spendingTitle }</h3>
+          <h4 className="collection-item">Amount: {spending.spendingAmount}</h4>
+        </div>
       </div>
     );
   }

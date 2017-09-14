@@ -34,7 +34,7 @@ class SpendingList extends Component {
         </div>
         <div>
           <Link to="/spendings/new" className="waves-effect waves-light btn">
-            Add new spending
+            Add
           </Link>
         </div>
       </div>

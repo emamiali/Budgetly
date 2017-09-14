@@ -23,10 +23,19 @@ app.use(bodyParser.json());
 
   //add the authentication middleware so the req will have access to the user. and the user ID.
   app.post('/api/spendings', requireLogin, function (req, res) {
-    const newSpending = new Spending(req.body);
-    console.log(newSpending);
-    console.log(req.user);
-    newSpending.user = req.user_id;
+
+    const newSpending = new Spending ();
+
+    newSpending.spendingTitle = req.body.title;
+    newSpending.spendingAmount = req.body.amount;
+
+    newSpending.save(function(err, spending) {
+      if (err)
+        res.send(err);
+      res.json({
+        message: 'Spending Successfully Added'
+      });
+    });
   });
 
   app.get('/api/spendings/:spending_id', function(req, res) {

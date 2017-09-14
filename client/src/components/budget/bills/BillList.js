@@ -34,7 +34,7 @@ class BillList extends Component {
         </div>
         <div>
           <Link to="/bills/new" className="waves-effect waves-light btn">
-            Add new Bill
+            Add
           </Link>
         </div>
       </div>

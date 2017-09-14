@@ -26,13 +26,17 @@ class BillShow extends Component {
     return (
       <div>
         <Link to="/dashboard">{'<'} Back To Dashboard</Link>
-        <button
-          className="btn waves-light red"
-          onClick={this.onDeleteClick.bind(this)}
-        >
-        Delete Bill</button>
-        <h3>Title: { bill.billTitle }</h3>
-        <h4>Amount: {bill.billAmount}</h4>
+        <div className="right-align">
+          <button
+            className="btn waves-light red"
+            onClick={this.onDeleteClick.bind(this)}
+          >
+          Delete Bill</button>
+        </div>
+        <div className="collection center-align">
+          <h3 className="collection-item">Title: { bill.billTitle }</h3>
+          <h4 className="collection-item">Amount: {bill.billAmount}</h4>
+        </div>
       </div>
     );
   }
