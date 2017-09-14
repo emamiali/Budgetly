@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,12 +10,24 @@ class BillList extends Component {
     this.props.fetchBills();
   }
 
+  renderBills() {
+    return _.map(this.props.bills, bill => {
+      return (
+        <li className="collection-item" key={bill._id}>
+          <strong>Title: </strong>{bill.billTitle}
+          <br />
+          <strong>Amount: </strong>{bill.billAmount}
+        </li>
+      )
+    })
+  }
+
   render() {
     return (
       <div>
         <div>
           <ul className="collection">
-            <li className="collection-item">This should be each bill</li>
+            {this.renderBills()}
           </ul>
         </div>
         <div>
