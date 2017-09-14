@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SpendingList from './SpendingList';
+import SpendingList from './spendings/SpendingList';
 import BillList from './bills/BillList';
 import Savings from './Savings';
 import { connect } from 'react-redux';

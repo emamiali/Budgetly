@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import BudgetRings from './BudgetRings';
 import BudgetContainer from './BudgetContainer';
-// import Button from './Button';
 
 export default class Dashboard extends Component {
   render() {
@@ -11,7 +10,6 @@ export default class Dashboard extends Component {
         <div className="valign-wrapper">
           <BudgetContainer />
         </div>
-        {/* <Button /> */}
       </div>
     );
   };
