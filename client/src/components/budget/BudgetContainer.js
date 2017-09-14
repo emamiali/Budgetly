@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SpendingList from './SpendingList';
-import BillList from './BillList';
+import BillList from './bills/BillList';
 import Savings from './Savings';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
@@ -11,7 +11,7 @@ class BudgetContainer extends Component {
   }
   render() {
     return (
-      <div className="valign-wrapper">
+      <div className="row">
         <div className="col s4">
           <SpendingList />
         </div>
