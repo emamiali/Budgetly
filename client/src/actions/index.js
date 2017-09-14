@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { FETCH_USER, FETCH_BILLS, FETCH_SPENDINGS, CREATE_BILLS, FETCH_BILL, DELETE_BILL } from './types';
 
-export const fetchUser = () => async dispatch => {
-  const res = await axios.get('/api/current_user');
-  dispatch({ type: FETCH_USER, payload: res.data });
+export function fetchUser() {
+  const request = axios.get('/api/current_user');
+
+  return {
+    type: FETCH_USER,
+    payload: request
+  }
 }
 
 export function fetchBills() {

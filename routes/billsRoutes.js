@@ -22,11 +22,19 @@ app.use(bodyParser.json());
   });
 
   //add the authentication middleware so the req will have access to the user. and the user ID.
-  app.post('/api/bills', requireLogin, function (req, res) {
-    const newBill = new Bill(req.body);
-    console.log(newBill);
-    console.log(req.user);
-    newBill.user = req.user_id;
+  app.post('/api/bills', function (req, res) {
+    console.log(req.body);
+    const newBill = new Bill();
+    newBill.billTitle = req.body.title;
+    newBill.billAmount = req.body.amount;
+
+    newBill.save(function(err, bill) {
+      if (err)
+        res.send(err);
+      res.json({
+        message: 'Bill Successfully Added'
+      });
+    });
   });
 
   app.get('/api/bills/:bill_id', function(req, res) {

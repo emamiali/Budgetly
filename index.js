@@ -9,7 +9,7 @@ require('./models/Spendings');
 require('./services/passport');
 
 
-mongoose.connect(keys.mongoURI || 'mongodb://localhost/budgetly'); //change this later
+mongoose.connect(keys.mongoURI); 
 
 const app = express();
 
