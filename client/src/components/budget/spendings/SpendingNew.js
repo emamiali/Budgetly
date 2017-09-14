@@ -36,28 +36,31 @@ class SpendingsNew extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <Field
-          label="Title"
-          name="title"
-          type="text"
-          component={this.renderField}
-        />
-        <Field
-          label="Amount"
-          name="amount"
-          type="number"
-          component={this.renderField}
-        />
-        <div className="row">
-          <div className="left-align col s6">
-            <button type="submit" className="btn waves-effect waves-light">Submit</button>
+      <div>
+        <div className="section"></div>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <Field
+            label="Title"
+            name="title"
+            type="text"
+            component={this.renderField}
+          />
+          <Field
+            label="Amount"
+            name="amount"
+            type="number"
+            component={this.renderField}
+          />
+          <div className="row">
+            <div className="left-align col s6">
+              <button type="submit" className="btn waves-effect waves-light">Submit</button>
+            </div>
+            <div className="right-align col s6">
+              <Link to="/dashboard" className="btn waves-light red">Cancel</Link>
+            </div>
           </div>
-          <div className="right-align col s6">
-            <Link to="/dashboard" className="btn waves-light red">Cancel</Link>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     );
   };
 }

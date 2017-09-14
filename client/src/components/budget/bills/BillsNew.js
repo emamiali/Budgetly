@@ -36,6 +36,8 @@ class BillsNew extends Component {
     const { handleSubmit } = this.props;
 
     return (
+      <div>
+        <div className="section"></div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             label="Title"
@@ -58,6 +60,7 @@ class BillsNew extends Component {
             </div>
           </div>
         </form>
+      </div>
     );
   };
 }
