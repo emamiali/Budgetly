@@ -27,7 +27,6 @@ class BillsNew extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
     this.props.createBills(values, () => {
       this.props.history.push('/dashboard');
     });

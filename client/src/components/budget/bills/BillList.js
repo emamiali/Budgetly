@@ -14,12 +14,14 @@ class BillList extends Component {
     return _.map(this.props.bills, bill => {
       return (
         <li className="collection-item" key={bill._id}>
-          <strong>Title: </strong>{bill.billTitle}
-          <br />
-          <strong>Amount: </strong>{bill.billAmount}
+          <Link to={`/bills/${bill._id}`} >
+            <strong>Title: </strong>{bill.billTitle}
+            <br />
+            <strong>Amount: </strong>{bill.billAmount}
+          </Link>
         </li>
-      )
-    })
+      );
+    });
   }
 
   render() {
