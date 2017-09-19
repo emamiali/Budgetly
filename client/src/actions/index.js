@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { FETCH_USER, FETCH_BILLS, CREATE_BILLS, FETCH_BILL, DELETE_BILL } from './types';
-import { FETCH_SPENDINGS, FETCH_SPENDING, CREATE_SPENDINGS, DELETE_SPENDING } from './types'
+import { FETCH_SPENDINGS, FETCH_SPENDING, CREATE_SPENDINGS, DELETE_SPENDING } from './types';
 
 
-const BILLS_ROUTE = '/api/bills'
+const BILLS_ROUTE = '/api/bills';
+const SPENDINGS_ROUTE = '/api/spendings';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -35,41 +36,26 @@ export const deleteBill = (bill_id, callback) => async dispatch => {
   dispatch({ type: DELETE_BILL, payload: res });
 }
 
+export const fetchSpendings = () => async dispatch => {
+  const res = await axios.get(SPENDINGS_ROUTE);
 
-export function fetchSpendings(){
-  const request = axios.get('/api/spendings');
-
-  return {
-    type: FETCH_SPENDINGS,
-    payload: request
-  }
+  dispatch({ type: FETCH_SPENDINGS, payload: res });
 }
 
-export function createSpendings(values, callback) {
-  const request = axios.post('/api/spendings', values)
-    .then(() => callback());
+export const createSpendings = (values, callback) => async dispatch => {
+  const res = await axios.post(SPENDINGS_ROUTE, values).then(() => callback());
 
-  return {
-    type: CREATE_SPENDINGS,
-    payload: request
-  }
+  dispatch({ type: CREATE_SPENDINGS, payload: res });
 }
 
-export function fetchSpending(spending_id) {
-  const request = axios.get('/api/spendings/' + spending_id);
+export const fetchSpending = spending_id => async dispatch => {
+  const res = axios.get(`${SPENDINGS_ROUTE}/${spending_id}`);
 
-  return {
-    type: FETCH_SPENDING,
-    payload: request
-  }
+  dispatch({ type: FETCH_SPENDING, payload: res });
 }
 
-export function deleteSpending(spending_id, callback) {
-  const request = axios.delete('/api/spendings/' + spending_id)
-    .then(() => callback());
+export const deleteSpending = (spending_id, callback) => async dispatch => {
+  const res = await axios.delete(`${SPENDINGS_ROUTE}/${spending_id}`).then(() => callback());
 
-  return {
-    type: DELETE_SPENDING,
-    payload: request
-  }
+  dispatch({ type: DELETE_SPENDING, payload: res });
 }
