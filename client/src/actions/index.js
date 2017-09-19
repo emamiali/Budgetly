@@ -6,33 +6,33 @@ import { FETCH_SPENDINGS, FETCH_SPENDING, CREATE_SPENDINGS, DELETE_SPENDING } fr
 const BILLS_ROUTE = '/api/bills'
 
 export const fetchUser = () => async dispatch => {
-  const res = await axios.get('api/current_user');
+  const res = await axios.get('/api/current_user');
 
-  dispatch({ type: FETCH_USER, payload: res.data });
+  dispatch({ type: FETCH_USER, payload: res });
 }
 
 export const fetchBills = () => async dispatch => {
   const res = await axios.get(BILLS_ROUTE);
 
-  dispatch({ type: FETCH_BILLS, payload: res.data });
+  dispatch({ type: FETCH_BILLS, payload: res });
 }
 
 export const createBills = (values, callback) => async dispatch => {
-  const res = await axios.post(BILLS_ROUTE, values)
+  const res = await axios.post(BILLS_ROUTE, values).then(() => callback());
 
-  dispatch({ type: CREATE_BILLS, payload: res.data });
+  dispatch({ type: CREATE_BILLS, payload: res });
 }
 
-export const fetchBill = (bill_id) => async dispatch => {
-  const res = await axios.get(`${BILLS_ROUTE}${bill_id}`);
+export const fetchBill = bill_id => async dispatch => {
+  const res = await axios.get(`${BILLS_ROUTE}/${bill_id}`);
 
-  dispatch({ type: FETCH_BILL, payload: res.data });
+  dispatch({ type: FETCH_BILL, payload: res });
 }
 
 export const deleteBill = (bill_id, callback) => async dispatch => {
-  const res = await axios.get(`${BILLS_ROUTE}${bill_id}`);
+  const res = await axios.delete(`${BILLS_ROUTE}/${bill_id}`).then(() => callback());
 
-  dispatch({ type: DELETE_BILL, payload: res.data });
+  dispatch({ type: DELETE_BILL, payload: res });
 }
 
 
