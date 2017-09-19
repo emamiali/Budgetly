@@ -27,19 +27,17 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/dashboard" component={Dashboard}/>
             <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/bills/new" component={BillsNew} />
-              <Route excat path ="/bills/:bill_id" component={BillShow} />
+              <Route exact path ="/bills/:bill_id" component={BillShow} />
               <Route exact path="/bills" component={Bills} />
-            </Switch>
-            <Switch>
               <Route exact path="/spendings/new" component={SpendingNew} />
-              <Route excat path ="/spendings/:spending_id" component={SpendingShow} />
+              <Route exact path ="/spendings/:spending_id" component={SpendingShow} />
               <Route exact path="/spendings" component={Spendings} />
+              <Route exact path="/profile" component={Profile} />
             </Switch>
-            <Route exact path="/profile" component={Profile} />
           </div>
         </BrowserRouter>
       </div>

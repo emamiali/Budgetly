@@ -2,52 +2,39 @@ import axios from 'axios';
 import { FETCH_USER, FETCH_BILLS, CREATE_BILLS, FETCH_BILL, DELETE_BILL } from './types';
 import { FETCH_SPENDINGS, FETCH_SPENDING, CREATE_SPENDINGS, DELETE_SPENDING } from './types'
 
-export function fetchUser() {
-  const request = axios.get('/api/current_user');
 
-  return {
-    type: FETCH_USER,
-    payload: request
-  }
+const BILLS_ROUTE = '/api/bills'
+
+export const fetchUser = () => async dispatch => {
+  const res = await axios.get('api/current_user');
+
+  dispatch({ type: FETCH_USER, payload: res.data });
 }
 
-export function fetchBills() {
-  const request = axios.get('/api/bills');
+export const fetchBills = () => async dispatch => {
+  const res = await axios.get(BILLS_ROUTE);
 
-  return {
-    type: FETCH_BILLS,
-    payload: request
-  }
+  dispatch({ type: FETCH_BILLS, payload: res.data });
 }
 
-export function createBills(values, callback) {
-  const request = axios.post('/api/bills', values)
-    .then(() => callback());
+export const createBills = (values, callback) => async dispatch => {
+  const res = await axios.post(BILLS_ROUTE, values)
 
-  return {
-    type: CREATE_BILLS,
-    payload: request
-  }
+  dispatch({ type: CREATE_BILLS, payload: res.data });
 }
 
-export function fetchBill(bill_id) {
-  const request = axios.get('/api/bills/' + bill_id);
+export const fetchBill = (bill_id) => async dispatch => {
+  const res = await axios.get(`${BILLS_ROUTE}${bill_id}`);
 
-  return {
-    type: FETCH_BILL,
-    payload: request
-  }
+  dispatch({ type: FETCH_BILL, payload: res.data });
 }
 
-export function deleteBill(bill_id, callback) {
-  const request = axios.delete('/api/bills/' + bill_id)
-    .then(() => callback());
+export const deleteBill = (bill_id, callback) => async dispatch => {
+  const res = await axios.get(`${BILLS_ROUTE}${bill_id}`);
 
-  return {
-    type: DELETE_BILL,
-    payload: request
-  }
+  dispatch({ type: DELETE_BILL, payload: res.data });
 }
+
 
 export function fetchSpendings(){
   const request = axios.get('/api/spendings');
