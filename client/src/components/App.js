@@ -6,7 +6,9 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './budget/Dashboard';
-import Profile from './Profile';
+
+import Profile from './profile/Profile';
+import ProfileEdit from './profile/ProfileEdit';
 
 import Bills from './budget/bills/BillList';
 import BillsNew from './budget/bills/BillsNew';
@@ -37,6 +39,7 @@ class App extends Component {
               <Route exact path ="/spendings/:spending_id" component={SpendingShow} />
               <Route exact path="/spendings" component={Spendings} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile/:user_id/edit" component={ProfileEdit} />
             </Switch>
           </div>
         </BrowserRouter>

@@ -1,4 +1,5 @@
 export const FETCH_USER = 'fetchUser';
+export const UPDATE_PROFILE = 'updateProfile';
 
 export const FETCH_BILLS = 'fetchBills';
 export const CREATE_BILLS = 'createBills';

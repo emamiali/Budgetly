@@ -13,7 +13,7 @@ class BillShow extends Component {
     const { bill_id } = this.props.match.params;
     this.props.deleteBill(bill_id, () => {
       this.props.history.push('/dashboard');
-    })
+    });
   }
 
   render() {

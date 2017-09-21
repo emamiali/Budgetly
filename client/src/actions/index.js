@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FETCH_USER, FETCH_BILLS, CREATE_BILLS, FETCH_BILL, DELETE_BILL } from './types';
 import { FETCH_SPENDINGS, FETCH_SPENDING, CREATE_SPENDINGS, DELETE_SPENDING } from './types';
+import { UPDATE_PROFILE } from './types';
 
 
 const BILLS_ROUTE = '/api/bills';
@@ -58,4 +59,11 @@ export const deleteSpending = (spending_id, callback) => async dispatch => {
   const res = await axios.delete(`${SPENDINGS_ROUTE}/${spending_id}`).then(() => callback());
 
   dispatch({ type: DELETE_SPENDING, payload: res });
+}
+
+export const profileEdit = (user_id, values) => async disptach => {
+  const res = await axios.put(`/api/profile/${user_id}`, values);
+  console.log('this is what the actions creator is returning: ', res);
+
+  disptach({ type: UPDATE_PROFILE, payload: res });
 }
