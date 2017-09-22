@@ -5,9 +5,7 @@ const userSchema = new Schema({
   googleID: String,
   name: String,
   email: String,
-  avatar: String,
-  totalBudget: Number,
-  totalSavings: Number
+  avatar: String
 });
 
 mongoose.model('users', userSchema);
