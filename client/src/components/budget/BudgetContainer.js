@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+
 import SpendingList from './spendings/SpendingList';
 import BillList from './bills/BillList';
 import Savings from './Savings';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import IncomeComponent from '../profile/TotalFunds';
 
 class BudgetContainer extends Component {
   componentDidMount(){
@@ -11,15 +13,20 @@ class BudgetContainer extends Component {
   }
   render() {
     return (
-      <div className="row">
-        <div className="col s4">
-          <SpendingList />
+      <div>
+        <div className="collection">
+          <IncomeComponent />
         </div>
-        <div className="col s4">
-          <BillList />
-        </div>
-        <div className="col s4">
-          <Savings />
+        <div className="row">
+          <div className="col s4">
+            <SpendingList />
+          </div>
+          <div className="col s4">
+            <BillList />
+          </div>
+          <div className="col s4">
+            <Savings />
+          </div>
         </div>
       </div>
     );

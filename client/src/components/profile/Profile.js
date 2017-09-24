@@ -22,18 +22,17 @@ class Profile extends Component {
         <div className="row">
           <div className="col s6">
             <img src={newImageStr} />
-          </div>
-          <div className="col s6">
             <p><strong>Name --- </strong>{auth.data.name}</p>
             <p><strong>Email --- </strong>{auth.data.email}</p>
+          </div>
+          <div className="col s6">
             <p><strong>Savings --- </strong></p>
             <p><strong>Total Earning --- </strong></p>
-            <p><strong>Total Savings --- </strong></p>
+            <Link to={`/profile/${auth.data._id}/edit`} className="waves-effect waves-light btn">
+              Add fundings and savings Goal
+            </Link>
           </div>
         </div>
-        <Link to={`/profile/${auth.data._id}/edit`} className="waves-effect waves-light btn">
-          Edit Profile
-        </Link>
       </div>
     );
   }
