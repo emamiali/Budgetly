@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { FETCH_USER, FETCH_BILLS, CREATE_BILLS, FETCH_BILL, DELETE_BILL } from './types';
 import { FETCH_SPENDINGS, FETCH_SPENDING, CREATE_SPENDINGS, DELETE_SPENDING } from './types';
-import { UPDATE_PROFILE } from './types';
+import { UPDATE_PROFILE, CREATE_SAVINGS_INCOME } from './types';
 
 
 const BILLS_ROUTE = '/api/bills';
 const SPENDINGS_ROUTE = '/api/spendings';
+const SAVINGS_AND_INCOME_ROUTE = '/api/savings_and_income';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -50,7 +51,7 @@ export const createSpendings = (values, callback) => async dispatch => {
 }
 
 export const fetchSpending = spending_id => async dispatch => {
-  const res = axios.get(`${SPENDINGS_ROUTE}/${spending_id}`);
+  const res = await axios.get(`${SPENDINGS_ROUTE}/${spending_id}`);
 
   dispatch({ type: FETCH_SPENDING, payload: res });
 }
@@ -66,4 +67,10 @@ export const profileEdit = (user_id, values) => async disptach => {
   console.log('this is what the actions creator is returning: ', res);
 
   disptach({ type: UPDATE_PROFILE, payload: res });
+}
+
+export const createSavingsAndIncome = (values, callback) => async dispatch => {
+  const res = await axios.post(SAVINGS_AND_INCOME_ROUTE, values).then(() => callback());
+
+  dispatch({ type: CREATE_SAVINGS_INCOME, payload: res});
 }

@@ -10,3 +10,5 @@ export const FETCH_SPENDINGS = 'fetchSpendings';
 export const CREATE_SPENDINGS = 'createSpendings';
 export const FETCH_SPENDING = 'fetchSpending';
 export const DELETE_SPENDING = 'deleteSpending';
+
+export const CREATE_SAVINGS_INCOME = 'createSavingsAndIncome';

@@ -17,12 +17,18 @@ class NewTotalFunds extends Component {
     )
   }
 
+  onSubmit(values){
+    console.log(values);
+  }
+
   render() {
     const { handleSubmit } = this.props;
     return (
       <div>
         <div className="section"></div>
-        <form>
+        <form
+          onSubmit={handleSubmit(this.onSubmit.bind(this))}
+        >
           <Field
             label="Total Income"
             name="income"
@@ -35,6 +41,13 @@ class NewTotalFunds extends Component {
             type="number"
             component={this.renderField}
           />
+          <button
+            onClick={() => this.showNewTotalFundsFrom()}
+            type="submit"
+            className="btn waves-effect waves-light"
+          >
+            Submit
+          </button>
         </form>
       </div>
     );
