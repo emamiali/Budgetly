@@ -2,10 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import NewTotalFunds from './NewTotalFunds';
+
 class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state= {
+      newTotalFundsFormVisible: false,
+      addNewSavingsAndIncome: true
+    }
+  }
+
   componentDidMount() {
     this.props.auth;
   }
+
+  showNewTotalFundsFrom(){
+    this.setState({
+      newTotalFundsFormVisible: !this.state.newTotalFundsFormVisible,
+      addNewSavingsAndIncome: !this.state.addNewSavingsAndIncome
+     });
+  }
+
   renderContent() {
     const { auth } = this.props;
 
@@ -16,7 +34,6 @@ class Profile extends Component {
     var imageStr = auth.data.avatar;
     var newImageStr = imageStr.split("?sz=50")[0]+"?sz="+newAvatarSize;
 
-    console.log(this.props.auth.data);
     return (
       <div>
         <div className="row">
@@ -28,9 +45,16 @@ class Profile extends Component {
           <div className="col s6">
             <p><strong>Savings --- </strong></p>
             <p><strong>Total Earning --- </strong></p>
-            <Link to={`/profile/${auth.data._id}/edit`} className="waves-effect waves-light btn">
-              Add fundings and savings Goal
-            </Link>
+
+            { this.state.addNewSavingsAndIncome ?
+              <button
+                onClick={() => this.showNewTotalFundsFrom()}
+                className="waves-effect waves-light btn"
+              >
+                Add Savings Goal and Income
+              </button>
+            : null }
+            { this.state.newTotalFundsFormVisible ? <NewTotalFunds /> : null }
           </div>
         </div>
       </div>

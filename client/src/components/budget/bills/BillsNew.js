@@ -53,7 +53,10 @@ class BillsNew extends Component {
           />
           <div className="row">
             <div className="left-align col s6">
+
               <button type="submit" className="btn waves-effect waves-light">Submit</button>
+
+              
             </div>
             <div className="right-align col s6">
               <Link to="/dashboard" className="btn waves-light red">Cancel</Link>

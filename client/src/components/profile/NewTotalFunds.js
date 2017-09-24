@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 class NewTotalFunds extends Component {
   renderField(field) {
     return (
-      <div>
-        <label> {filed.label} </label>
+      <div className="input-field">
+        <label className="active"> {field.label} </label>
         <input
           className="input-field"
           type={field.type}
@@ -18,19 +18,21 @@ class NewTotalFunds extends Component {
   }
 
   render() {
-    retrun (
+    const { handleSubmit } = this.props;
+    return (
       <div>
+        <div className="section"></div>
         <form>
           <Field
             label="Total Income"
             name="income"
-            type="text"
+            type="number"
             component={this.renderField}
           />
           <Field
             label="Savings Goal"
             name="savingsGoal"
-            type="numbner"
+            type="number"
             component={this.renderField}
           />
         </form>
