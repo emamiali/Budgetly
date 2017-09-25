@@ -9,6 +9,17 @@ module.exports = (app) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 
+  app.get('/api/savings_and_income', (req, res) => {
+    Total
+      .find({ _user: req.user_id})
+      .exec((err, totals) => {
+        if (err || !totals) {
+          return res.status(404).send({ message: "Unable to find your income or savings goal!!"});
+        }
+        res.send(totals);
+      });
+  });
+
   app.post('/api/savings_and_income', (req, res) => {
     const newTotal = new Total();
 

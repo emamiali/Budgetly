@@ -1,5 +1,4 @@
 export const FETCH_USER = 'fetchUser';
-export const UPDATE_PROFILE = 'updateProfile';
 
 export const FETCH_BILLS = 'fetchBills';
 export const CREATE_BILLS = 'createBills';
@@ -12,3 +11,4 @@ export const FETCH_SPENDING = 'fetchSpending';
 export const DELETE_SPENDING = 'deleteSpending';
 
 export const CREATE_SAVINGS_INCOME = 'createSavingsAndIncome';
+export const FETCH_SAVINGS_INCOME = 'fetchSavingsIncome';
