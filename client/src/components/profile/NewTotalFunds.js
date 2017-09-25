@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createSavingsAndIncome } from '../../actions'
 
 class NewTotalFunds extends Component {
   renderField(field) {
@@ -18,7 +19,7 @@ class NewTotalFunds extends Component {
   }
 
   onSubmit(values){
-    console.log(values);
+    this.props.createSavingsAndIncome(values);
   }
 
   render() {
@@ -42,7 +43,6 @@ class NewTotalFunds extends Component {
             component={this.renderField}
           />
           <button
-            onClick={() => this.showNewTotalFundsFrom()}
             type="submit"
             className="btn waves-effect waves-light"
           >
@@ -57,5 +57,5 @@ class NewTotalFunds extends Component {
 export default reduxForm({
   form: "NewTotalFunds"
 })(
-  connect(null, null)(NewTotalFunds)
+  connect(null, { createSavingsAndIncome })(NewTotalFunds)
 );

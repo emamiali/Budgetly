@@ -69,8 +69,8 @@ export const profileEdit = (user_id, values) => async disptach => {
   disptach({ type: UPDATE_PROFILE, payload: res });
 }
 
-export const createSavingsAndIncome = (values, callback) => async dispatch => {
-  const res = await axios.post(SAVINGS_AND_INCOME_ROUTE, values).then(() => callback());
+export const createSavingsAndIncome = (values) => async dispatch => {
+  const res = await axios.post(SAVINGS_AND_INCOME_ROUTE, values);
 
-  dispatch({ type: CREATE_SAVINGS_INCOME, payload: res});
+  dispatch({ type: CREATE_SAVINGS_INCOME, payload: res });
 }

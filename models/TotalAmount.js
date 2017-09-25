@@ -7,4 +7,4 @@ const totalAmountSchema = new Schema({
   _user: { type: Schema.Types.ObjectId, ref: 'User'}
 });
 
-mongoose.model('total', totalAmountSchema);
+mongoose.model('totals', totalAmountSchema);

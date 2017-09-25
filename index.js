@@ -6,10 +6,11 @@ const keys = require('./config/keys');
 require('./models/User');
 require('./models/Bills');
 require('./models/Spendings');
+require('./models/TotalAmount');
 require('./services/passport');
 
 
-mongoose.connect(keys.mongoURI); 
+mongoose.connect(keys.mongoURI);
 // mongoose.connect(keys.mongoURI || "mongodb://localhost/Budgetly");
 
 const app = express();
@@ -26,6 +27,7 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/billsRoutes')(app);
 require('./routes/spendingsRoutes')(app);
+require('./routes/savingsAndIncomeRoute')(app);
 
 
 
