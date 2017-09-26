@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchSavingsIncome } from '../../actions';
 
 import NewTotalFunds from './NewTotalFunds';
 
@@ -15,6 +16,12 @@ class Profile extends Component {
 
   componentDidMount() {
     this.props.auth;
+    this.props.fetchSavingsIncome();
+  }
+
+  componentWillUpdate() {
+    this.props.savingsIncome;
+    console.log(this.props);
   }
 
   showNewTotalFundsFrom(){
@@ -26,6 +33,7 @@ class Profile extends Component {
 
   renderContent() {
     const { auth } = this.props;
+    const { total } = this.props;
 
     if (!auth) {
       return <div>Loading ...</div>
@@ -43,19 +51,32 @@ class Profile extends Component {
             <p><strong>Email --- </strong>{auth.data.email}</p>
           </div>
           <div className="col s6">
-            <p><strong>Savings --- </strong></p>
-            <p><strong>Total Earning --- </strong></p>
-
+            { (!total || total.data.length === 0) ?
+              <div>
+                <div className="section"></div>
+                <div className="col s6">Please add an income and a savings goal</div>
+                <div className="section"></div>
+              </div> :
+              <div>
+                <p><strong>Savings --- </strong>  {total.data[0].savingsGoal}</p>
+                <p><strong>Total Earning --- {total.data[0].income}</strong>  </p>
+              </div>
+            }
             { this.state.addNewSavingsAndIncome ?
-              <button
-                onClick={() => this.showNewTotalFundsFrom()}
-                className="waves-effect waves-light btn"
-              >
-                Add Savings Goal and Income
-              </button>
-            : null }
-            { this.state.newTotalFundsFormVisible ? <NewTotalFunds /> : null }
-          </div>
+              <div>
+                <div className="section"></div>
+                <button
+                  onClick={() => this.showNewTotalFundsFrom()}
+                  className="waves-effect waves-light btn"
+                >
+                  Add Savings Goal and Income
+                </button>
+              </div>
+              : null }
+
+              { this.state.newTotalFundsFormVisible ? <NewTotalFunds /> : null }
+            </div>
+
         </div>
       </div>
     );
@@ -71,7 +92,10 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-  return { auth: state.auth }
+  return {
+    auth: state.auth,
+    total: state.savingIncome
+   }
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, { fetchSavingsIncome })(Profile);

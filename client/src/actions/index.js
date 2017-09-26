@@ -65,6 +65,7 @@ export const deleteSpending = (spending_id, callback) => async dispatch => {
 
 export const fetchSavingsIncome = () => async dispatch => {
   const res = await axios.get(SAVINGS_AND_INCOME_ROUTE);
+  console.log(res);
 
   dispatch({ type: FETCH_SAVINGS_INCOME, payload: res });
 }
