@@ -12,6 +12,7 @@ class Profile extends Component {
       newTotalFundsFormVisible: false,
       addNewSavingsAndIncome: true
     }
+    this.showNewTotalFundsForm = this.showNewTotalFundsForm.bind(this);
   }
 
   componentDidMount() {
@@ -19,11 +20,7 @@ class Profile extends Component {
     this.props.fetchSavingsIncome();
   }
 
-  componentWillUpdate() {
-    this.props.savingsIncome;
-  }
-
-  showNewTotalFundsFrom(){
+  showNewTotalFundsForm(){
     this.setState({
       newTotalFundsFormVisible: !this.state.newTotalFundsFormVisible,
       addNewSavingsAndIncome: !this.state.addNewSavingsAndIncome
@@ -45,24 +42,14 @@ class Profile extends Component {
       <div>
         <div className="section"></div>
         <div className="col s6">Please add an income and a savings goal</div>
+        <div className="section"></div>
       </div>;
-
-    if (!total) {
-      return <div>Loading ...</div>
-    }
-
-    const savingsAndIncomeView = (
-      <div>
-        <p><strong>Savings --- </strong>  {total.data[0].savingsGoal}</p>
-        <p><strong>Total Earning --- {total.data[0].income}</strong>  </p>
-      </div>
-    );
 
     const addNewSavingsAndIncomeButton =
       <div>
         <div className="section"></div>
         <button
-          onClick={() => this.showNewTotalFundsFrom()}
+          onClick={() => this.showNewTotalFundsForm()}
           className="waves-effect waves-light btn"
         >
           Add Savings Goal and Income
@@ -77,9 +64,18 @@ class Profile extends Component {
           <p><strong>Email --- </strong>{auth.data.email}</p>
         </div>
         <div className="col s6">
-          { (!total || total.data.length === 0) ? noSavingsAndIncomeView : savingsAndIncomeView }
+          { (!total || total.data.length === 0) ? noSavingsAndIncomeView :
+          <div>
+            <p><strong>Savings --- </strong>  {total.data[0].savingsGoal}</p>
+            <p><strong>Total Earning --- {total.data[0].income}</strong>  </p>
+          </div>
+          }
           { this.state.addNewSavingsAndIncome ? addNewSavingsAndIncomeButton :  null }
-          { this.state.newTotalFundsFormVisible ? <NewTotalFunds /> : null }
+          { this.state.newTotalFundsFormVisible ?
+            <NewTotalFunds
+              showNewTotalFundsForm={this.showNewTotalFundsForm}
+            />
+          : null }
         </div>
       </div>
     );

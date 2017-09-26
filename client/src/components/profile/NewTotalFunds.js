@@ -20,6 +20,7 @@ class NewTotalFunds extends Component {
 
   onSubmit(values){
     this.props.createSavingsAndIncome(values);
+    this.props.showNewTotalFundsForm();
   }
 
   render() {
