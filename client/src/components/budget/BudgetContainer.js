@@ -5,7 +5,7 @@ import * as actions from '../../actions';
 import SpendingList from './spendings/SpendingList';
 import BillList from './bills/BillList';
 import Savings from './Savings';
-import IncomeComponent from '../profile/TotalFunds';
+import IncomeComponent from '../profile/IncomeComponent';
 
 class BudgetContainer extends Component {
   componentDidMount(){
