@@ -13,11 +13,19 @@ class Profile extends Component {
       addNewSavingsAndIncome: true
     }
     this.showNewTotalFundsForm = this.showNewTotalFundsForm.bind(this);
+    this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
   }
 
   componentDidMount() {
     this.props.auth;
     this.props.fetchSavingsIncome();
+  }
+
+
+//have to fix this issue, here.
+  forceUpdateHandler(){
+    this.forceUpdate();
+    console.log('clicked');
   }
 
   showNewTotalFundsForm(){
@@ -74,6 +82,7 @@ class Profile extends Component {
           { this.state.newTotalFundsFormVisible ?
             <NewTotalFunds
               showNewTotalFundsForm={this.showNewTotalFundsForm}
+              forceUpdateHandler={this.forceUpdateHandler}
             />
           : null }
         </div>
