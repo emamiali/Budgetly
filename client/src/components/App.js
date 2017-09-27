@@ -18,6 +18,10 @@ import Spendings from './budget/spendings/SpendingList';
 import SpendingNew from './budget/spendings/SpendingNew';
 import SpendingShow from './budget/spendings/SpendingShow';
 
+import Savings from './budget/savings/SavingsList';
+import SavingNew from './budget/savings/SavingNew';
+import SavingShow from './budget/savings/SavingShow';
+
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -38,8 +42,10 @@ class App extends Component {
               <Route exact path="/spendings/new" component={SpendingNew} />
               <Route exact path ="/spendings/:spending_id" component={SpendingShow} />
               <Route exact path="/spendings" component={Spendings} />
+              <Route exact path="/savings/new" component={SavingNew} />
+              <Route exact path="/savings/:saving_id" component={SavingShow}/>
+              <Route exact path="/savings" component={Savings}/>
               <Route exact path="/profile" component={Profile} />
-              {/* <Route exact path="/profile/:user_id/edit" component={ProfileEdit} /> */}
             </Switch>
           </div>
         </BrowserRouter>

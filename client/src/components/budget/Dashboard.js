@@ -7,7 +7,7 @@ export default class Dashboard extends Component {
     return (
       <div className="center-align">
         <BudgetRings />
-        <div className="valign-wrapper">
+        <div className="valign-wrapper col s12">
           <BudgetContainer />
         </div>
       </div>

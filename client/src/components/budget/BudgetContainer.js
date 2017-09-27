@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 
 import SpendingList from './spendings/SpendingList';
 import BillList from './bills/BillList';
-import Savings from './Savings';
+import SavingsList from './savings/SavingsList';
 import IncomeComponent from '../profile/IncomeComponent';
 
 class BudgetContainer extends Component {
@@ -25,7 +25,7 @@ class BudgetContainer extends Component {
             <BillList />
           </div>
           <div className="col s4">
-            <Savings />
+            <SavingsList />
           </div>
         </div>
       </div>
