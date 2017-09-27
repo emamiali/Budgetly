@@ -13,31 +13,37 @@ class IncomeComponent extends Component {
     this.props.fetchSavingsIncome();
   }
 
-  renderBills() {
+  renderTotalBills() {
     const { bills } = this.props;
-
     if (!bills) {
       return <div>Loading ...</div>
     }
-
     const billAmountArray = [];
-
     const billObjectToIndividualBill = _.map(this.props.bills, bill => {
       const IndividualBillAmount = bill.billAmount;
       billAmountArray.push(IndividualBillAmount);
     });
-
     const totalBill =
       billAmountArray.reduce((a, b) => a + b, 0);
-
-    return (
-      <p>
-        {totalBill}
-      </p>
-    )
-
+    return ( <p> {totalBill} </p> );
   }
-  // const { spendings } = this.props;
+
+  renderTotalSpendings() {
+    const { spendings } = this.props;
+
+    if (!spendings) {
+      return <div>Loading ...</div>
+    }
+
+    const spendingAmountArray = [];
+
+    const spendingObjectToIndividualSpending = _.map(this.props.spendings, spending => {
+      const IndividualSpendingAmount = spending.spendingAmount;
+      spendingAmountArray.push(IndividualSpendingAmount);
+    });
+    const totalSpending = spendingAmountArray.reduce((a, b) => a + b, 0);
+    return ( <p> { totalSpending } </p>);
+  }
   // const { fetchSavingsIncome } = this.props;
 
 
@@ -51,8 +57,8 @@ class IncomeComponent extends Component {
           <p><strong>Total Savings --- </strong></p>
         </div>
         <div className="col s6 left-align">
-          <p><strong>Total Spendings --- </strong></p>
-          <strong>Total Bills --- </strong> {this.renderBills()}
+          <strong>Total Spendings --- </strong>{this.renderTotalSpendings()}
+          <strong>Total Bills --- </strong> {this.renderTotalBills()}
           <p><strong>Remaining Funds --- </strong></p>
         </div>
       </div>
