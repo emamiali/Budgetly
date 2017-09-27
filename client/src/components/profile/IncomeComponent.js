@@ -25,7 +25,12 @@ class IncomeComponent extends Component {
     });
     const totalBill =
       billAmountArray.reduce((a, b) => a + b, 0);
-    return ( <p> {totalBill} </p> );
+    return (
+      <p>
+        <strong>Total Bills --- </strong>
+        { totalBill }
+      </p>
+    );
   }
 
   renderTotalSpendings() {
@@ -39,9 +44,30 @@ class IncomeComponent extends Component {
       spendingAmountArray.push(IndividualSpendingAmount);
     });
     const totalSpending = spendingAmountArray.reduce((a, b) => a + b, 0);
-    return ( <p> { totalSpending } </p>);
+    return (
+      <p>
+        <strong>Total Spendings --- </strong>
+        { totalSpending }
+      </p>
+    );
   }
   // const { fetchSavingsIncome } = this.props;
+
+  renderIncomeAndSavings() {
+    const { total } = this.props;
+
+    if (!total) {
+      return ( <div>Loading ...</div> )
+    }
+
+    return (
+      <div>
+        <p><strong>Total Earning --- {total.data[0].income}</strong>  </p>
+        <p><strong>Savings --- </strong>  {total.data[0].savingsGoal}</p>
+      </div>
+    )
+
+  }
 
 
 
@@ -49,13 +75,12 @@ class IncomeComponent extends Component {
     return (
       <div className="row" style={IncomeComponentStyle}>
         <div className="col s6 left-align">
-          <p><strong>Income --- </strong></p>
-          <p><strong>Savings Goal --- </strong></p>
+          {this.renderIncomeAndSavings()}
           <p><strong>Total Savings --- </strong></p>
         </div>
         <div className="col s6 left-align">
-          <strong>Total Spendings --- </strong>{this.renderTotalSpendings()}
-          <strong>Total Bills --- </strong> {this.renderTotalBills()}
+          {this.renderTotalSpendings()}
+          {this.renderTotalBills()}
           <p><strong>Remaining Funds --- </strong></p>
         </div>
       </div>
@@ -65,7 +90,7 @@ class IncomeComponent extends Component {
 
 function mapStateToProps(state) {
   return {
-    total: state.savingsIncome,
+    total: state.savingIncome,
     spendings: state.spendings,
     bills: state.bills
   }
