@@ -30,13 +30,10 @@ class IncomeComponent extends Component {
 
   renderTotalSpendings() {
     const { spendings } = this.props;
-
     if (!spendings) {
       return <div>Loading ...</div>
     }
-
     const spendingAmountArray = [];
-
     const spendingObjectToIndividualSpending = _.map(this.props.spendings, spending => {
       const IndividualSpendingAmount = spending.spendingAmount;
       spendingAmountArray.push(IndividualSpendingAmount);
