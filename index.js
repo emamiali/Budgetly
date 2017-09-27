@@ -27,6 +27,7 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 require('./routes/billsRoutes')(app);
 require('./routes/spendingsRoutes')(app);
+require('./routes/savingsRoutes')(app);
 require('./routes/savingsAndIncomeRoute')(app);
 
 

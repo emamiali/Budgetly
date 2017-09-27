@@ -24,7 +24,6 @@ class IncomeComponent extends Component {
     });
     const totalBill =
       billAmountArray.reduce((a, b) => a + b, 0);
-      console.log(totalBill);
 
     const { spendings } = this.props;
     if (!spendings) {
