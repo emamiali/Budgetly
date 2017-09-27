@@ -6,6 +6,7 @@ const keys = require('./config/keys');
 require('./models/User');
 require('./models/Bills');
 require('./models/Spendings');
+require('./models/Savings')
 require('./models/TotalAmount');
 require('./services/passport');
 

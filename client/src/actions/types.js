@@ -12,3 +12,8 @@ export const DELETE_SPENDING = 'deleteSpending';
 
 export const CREATE_SAVINGS_INCOME = 'createSavingsAndIncome';
 export const FETCH_SAVINGS_INCOME = 'fetchSavingsIncome';
+
+export const FETCH_SAVINGS = 'fetchSavings';
+export const CREATE_SAVINGS = 'createSavings';
+export const FETCH_SAVING = 'fetchSaving';
+export const DELETE_SAVING = 'deleteBill';

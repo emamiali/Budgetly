@@ -2,10 +2,12 @@ import axios from 'axios';
 import { FETCH_USER, FETCH_BILLS, CREATE_BILLS, FETCH_BILL, DELETE_BILL } from './types';
 import { FETCH_SPENDINGS, FETCH_SPENDING, CREATE_SPENDINGS, DELETE_SPENDING } from './types';
 import { FETCH_SAVINGS_INCOME, CREATE_SAVINGS_INCOME } from './types';
+import { FETCH_SAVINGS, CREATE_SAVINGS, FETCH_SAVING, DELETE_SAVING } from './types';
 
 
 const BILLS_ROUTE = '/api/bills';
 const SPENDINGS_ROUTE = '/api/spendings';
+const SAVINGS_ROUTE = '/api/savings';
 const SAVINGS_AND_INCOME_ROUTE = '/api/savings_and_income';
 
 export const fetchUser = () => async dispatch => {
@@ -62,6 +64,29 @@ export const deleteSpending = (spending_id, callback) => async dispatch => {
   dispatch({ type: DELETE_SPENDING, payload: res });
 }
 
+export const fetchSavings = () => async dispatch => {
+  const res = await axios.get(SAVINGS_ROUTE);
+
+  dispatch({ type: FETCH_SAVINGS, payload: res });
+}
+
+export const createSavings = (values, callback) => async dispatch => {
+  const res = await axios.post(SAVINGS_ROUTE, values).then(() => callback());
+
+  dispatch({ type: CREATE_SAVINGS, payload: res });
+}
+
+export const fetchSaving = saving_id => async dispatch => {
+  const res = await axios.get(`${SAVINGS_ROUTE}/${saving_id}`);
+
+  dispatch({ type: FETCH_SAVING, payload: res });
+}
+
+export const deleteSaving = (saving_id, callback) => async dispatch => {
+  const res = await axios.delete(`${SAVINGS_ROUTE}/${saving_id}`).then(() => callback());
+
+  dispatch({ type: DELETE_SAVING, payload: res });
+}
 
 export const fetchSavingsIncome = () => async dispatch => {
   const res = await axios.get(SAVINGS_AND_INCOME_ROUTE);
