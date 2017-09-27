@@ -6,14 +6,13 @@ import { fetchSavingsIncome, fetchBills, fetchSpendings } from '../../actions';
 
 
 class IncomeComponent extends Component {
-
   componentDidMount() {
     this.props.fetchBills();
     this.props.fetchSpendings();
     this.props.fetchSavingsIncome();
   }
 
-  renderTotalBills() {
+  renderTotal() {
     const { bills } = this.props;
     if (!bills) {
       return <div>Loading ...</div>
@@ -25,15 +24,8 @@ class IncomeComponent extends Component {
     });
     const totalBill =
       billAmountArray.reduce((a, b) => a + b, 0);
-    return (
-      <p>
-        <strong>Total Bills --- </strong>
-        { totalBill }
-      </p>
-    );
-  }
+      console.log(totalBill);
 
-  renderTotalSpendings() {
     const { spendings } = this.props;
     if (!spendings) {
       return <div>Loading ...</div>
@@ -44,28 +36,38 @@ class IncomeComponent extends Component {
       spendingAmountArray.push(IndividualSpendingAmount);
     });
     const totalSpending = spendingAmountArray.reduce((a, b) => a + b, 0);
-    return (
-      <p>
-        <strong>Total Spendings --- </strong>
-        { totalSpending }
-      </p>
-    );
-  }
-  // const { fetchSavingsIncome } = this.props;
 
-  renderIncomeAndSavings() {
     const { total } = this.props;
 
     if (!total) {
       return ( <div>Loading ...</div> )
     }
 
+    const income = total.data[0].income;
+    const savingsGoal = total.data[0].savingsGoal;
+    const remainingFunds = income - savingsGoal - totalBill - totalSpending;
+
     return (
       <div>
-        <p><strong>Total Earning --- {total.data[0].income}</strong>  </p>
-        <p><strong>Savings --- </strong>  {total.data[0].savingsGoal}</p>
+        <div className="col s6 left-align">
+          <p><strong>Total Earning --- {income}</strong>  </p>
+          <p><strong>Savings --- </strong>  {savingsGoal}</p>
+          <p><strong>Total Savings --- </strong></p>
+        </div>
+        <div className="col s6 left-align">
+          <p><strong>Total Spendings --- </strong>{ totalSpending }</p>
+          <p><strong>Total Bills --- </strong>{ totalBill }</p>
+          <p><strong>Remaining Funds --- </strong> { remainingFunds }</p>
+        </div>
       </div>
-    )
+    );
+  }
+
+  renderRemainingFunds() {
+    const { bills, spendings, total } = this.props;
+    if (!bills || !spendings || !total) {
+      return(<div>Something is loading  ...</div>)
+    }
 
   }
 
@@ -74,15 +76,7 @@ class IncomeComponent extends Component {
   render() {
     return (
       <div className="row" style={IncomeComponentStyle}>
-        <div className="col s6 left-align">
-          {this.renderIncomeAndSavings()}
-          <p><strong>Total Savings --- </strong></p>
-        </div>
-        <div className="col s6 left-align">
-          {this.renderTotalSpendings()}
-          {this.renderTotalBills()}
-          <p><strong>Remaining Funds --- </strong></p>
-        </div>
+        {this.renderTotal()}
       </div>
     );
   };
