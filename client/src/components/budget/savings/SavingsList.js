@@ -11,7 +11,6 @@ class SavingList extends Component {
   }
 
   renderSavings() {
-    console.log(this.props.savings);
     return _.map(this.props.savings, saving => {
       return (
         <li className="collection-item" key={saving._id}>

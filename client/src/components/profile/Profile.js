@@ -42,7 +42,7 @@ class Profile extends Component {
       return <div>Loading ...</div>
     }
     const newAvatarSize = "300"
-    var imageStr = auth.data.avatar;
+    var imageStr = auth.avatar;
     var newImageStr = imageStr.split("?sz=50")[0]+"?sz="+newAvatarSize;
 
     const noSavingsAndIncomeView =
@@ -67,8 +67,8 @@ class Profile extends Component {
       <div className="row">
         <div className="col s6">
           <img src={newImageStr} />
-          <p><strong>Name --- </strong>{auth.data.name}</p>
-          <p><strong>Email --- </strong>{auth.data.email}</p>
+          <p><strong>Name --- </strong>{auth.name}</p>
+          <p><strong>Email --- </strong>{auth.email}</p>
         </div>
         <div className="col s6">
           { (!total || total.data.length === 0) ? noSavingsAndIncomeView :
