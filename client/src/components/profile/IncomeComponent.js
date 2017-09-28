@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSavingsIncome, fetchBills, fetchSpendings } from '../../actions';
+import { fetchSavingsIncome, fetchBills, fetchSpendings, fetchSavings } from '../../actions';
 
 
 
@@ -10,6 +10,7 @@ class IncomeComponent extends Component {
     this.props.fetchBills();
     this.props.fetchSpendings();
     this.props.fetchSavingsIncome();
+    this.props.fetchSavings();
   }
 
   renderTotal() {
@@ -36,8 +37,22 @@ class IncomeComponent extends Component {
     });
     const totalSpending = spendingAmountArray.reduce((a, b) => a + b, 0);
 
-    const { total } = this.props;
+    const { savings } = this.props;
 
+    if (!savings) {
+      return ( <div>Loading ...</div> );
+    }
+
+    const savingsAmountArray = [];
+
+    const savingsObjectToIndividualSaving = _.map(this.props.savings, saving => {
+      const IndividualSavingAmount = saving.savingAmount;
+      savingsAmountArray.push(IndividualSavingAmount);
+    });
+    const totalSaving = savingsAmountArray.reduce((a, b) => a + b, 0);
+
+
+    const { total } = this.props;
     if (!total) {
       return ( <div>Loading ...</div> )
     }
@@ -49,14 +64,14 @@ class IncomeComponent extends Component {
     return (
       <div>
         <div className="col s6 left-align">
-          <p><strong>Total Earning --- {income}</strong>  </p>
-          <p><strong>Savings --- </strong>  {savingsGoal}</p>
-          <p><strong>Total Savings --- </strong></p>
+          <p><strong>Total Earning --- </strong> {income} </p>
+          <p><strong>Savings Goal --- </strong>  {savingsGoal} </p>
+          <p><strong>Total Savings --- </strong> {totalSaving} </p>
         </div>
         <div className="col s6 left-align">
-          <p><strong>Total Spendings --- </strong>{ totalSpending }</p>
-          <p><strong>Total Bills --- </strong>{ totalBill }</p>
-          <p><strong>Remaining Funds --- </strong> { remainingFunds }</p>
+          <p><strong>Total Spendings --- </strong> {totalSpending} </p>
+          <p><strong>Total Bills --- </strong> {totalBill} </p>
+          <p><strong>Remaining Funds --- </strong> {remainingFunds} </p>
         </div>
       </div>
     );
@@ -85,11 +100,12 @@ function mapStateToProps(state) {
   return {
     total: state.savingIncome,
     spendings: state.spendings,
-    bills: state.bills
+    bills: state.bills,
+    savings: state.savings
   }
 }
 
-export default connect(mapStateToProps, {fetchBills, fetchSavingsIncome, fetchSpendings })(IncomeComponent);
+export default connect(mapStateToProps, {fetchBills, fetchSavingsIncome, fetchSpendings, fetchSavings })(IncomeComponent);
 
 const IncomeComponentStyle = {
   color: "rgb(0, 89, 14)",

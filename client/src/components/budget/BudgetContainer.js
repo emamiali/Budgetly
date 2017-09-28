@@ -13,7 +13,7 @@ class BudgetContainer extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="center-align">
         <div className="collection">
           <IncomeComponent />
         </div>
