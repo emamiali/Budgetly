@@ -11,6 +11,9 @@ class BillList extends Component {
   }
 
   renderBills() {
+    if (_.isEmpty(this.props.bills)) {
+      return (<div> Add a Bill</div>)
+    }
     return _.map(this.props.bills, bill => {
       return (
         <li className="collection-item" key={bill._id}>

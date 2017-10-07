@@ -11,6 +11,9 @@ class SpendingList extends Component {
   }
 
   renderSpendings() {
+    if (_.isEmpty(this.props.spendings)) {
+      return (<div> Add a spendings</div>)
+    }
     return _.map(this.props.spendings, spending => {
       return (
         <li className="collection-item" key={spending._id}>

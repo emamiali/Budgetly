@@ -57,6 +57,9 @@ class IncomeComponent extends Component {
       return ( <div>Loading ...</div> )
     }
 
+    if (!total.data[0]) {
+      return ( <div><p>Please Add Income and savings in the profile tab</p></div>)
+    }
     const income = total.data[0].income;
     const savingsGoal = total.data[0].savingsGoal;
     const remainingFunds = income - savingsGoal - totalBill - totalSpending;

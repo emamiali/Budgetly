@@ -19,7 +19,6 @@ class BudgetRings extends Component {
   }
 
   render() {
-    console.log(data);
     return (
       <div className="row">
         <div className="col s3">
