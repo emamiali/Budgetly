@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PieChart, Pie, Legend, Tooltip } from 'recharts';
+import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 
 class BudgetRings extends Component {
   constructor(props){
@@ -21,29 +21,29 @@ class BudgetRings extends Component {
   render() {
     return (
       <div className="row">
-        <div className="col s3">
-          <PieChart  width={800} height={400}>
-            <Pie dataKey='value' data={data}  cx={200} cy={200} innerRadius={70} outerRadius={90} label />
-            <Legend align="left"/>
-            <Tooltip />
-          </PieChart>
-
+        <div className="col s4">
+          <ResponsiveContainer width="100%" aspect={6.0/5.0}>
+            <PieChart margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+              <Pie dataKey='value' data={data} innerRadius='85%' outerRadius='95%' label />
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
-        <div className="col s3">
-          <PieChart  width={800} height={400}>
-            <Pie dataKey='value' data={data}  cx={200} cy={200} innerRadius={70} outerRadius={90} label />
-            <Legend align="left"/>
-            <Tooltip />
-          </PieChart>
-
+        <div className="col s4">
+          <ResponsiveContainer width="100%" aspect={6.0/5.0}>
+            <PieChart margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+              <Pie dataKey='value' data={data} innerRadius='85%' outerRadius='95%' label />
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
-        <div className="col s3">
-          <PieChart  width={800} height={400}>
-            <Pie dataKey='value' data={data}  cx={200} cy={200} innerRadius={70} outerRadius={90} label />
-            <Legend />
-            <Tooltip />
-          </PieChart>
-
+        <div className="col s4">
+          <ResponsiveContainer width="100%" aspect={6.0/5.0}>
+            <PieChart margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+              <Pie dataKey='value' data={data} innerRadius='85%' outerRadius='95%' label />
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
     );
