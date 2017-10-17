@@ -23,7 +23,7 @@ class BudgetRings extends Component {
       <div className="row">
         <div className="col s4">
           <ResponsiveContainer width="100%" aspect={6.0/5.0}>
-            <PieChart margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+            <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
               <Pie dataKey='value' data={data} innerRadius='85%' outerRadius='95%' label />
               <Tooltip />
             </PieChart>
@@ -31,7 +31,7 @@ class BudgetRings extends Component {
         </div>
         <div className="col s4">
           <ResponsiveContainer width="100%" aspect={6.0/5.0}>
-            <PieChart margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+            <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
               <Pie dataKey='value' data={data} innerRadius='85%' outerRadius='95%' label />
               <Tooltip />
             </PieChart>
@@ -39,7 +39,7 @@ class BudgetRings extends Component {
         </div>
         <div className="col s4">
           <ResponsiveContainer width="100%" aspect={6.0/5.0}>
-            <PieChart margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+            <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
               <Pie dataKey='value' data={data} innerRadius='85%' outerRadius='95%' label />
               <Tooltip />
             </PieChart>
