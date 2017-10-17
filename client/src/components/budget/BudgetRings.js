@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import { connect } from 'react-redux';
+import { fetchSpendings, fetchBills, fetchSavings } from '../../actions';
 
 class BudgetRings extends Component {
   constructor(props){
@@ -7,18 +9,36 @@ class BudgetRings extends Component {
     this.state = {
       billDataArray : []
     }
+    console.log(this.props);
   }
-
-  convertDataObjectToArray() {
+  componentDidMount(){
     const { billData } = this.props;
-
+    
     var billDataArray = Object.keys(billData).map( key => {
       return billData[key];
     });
     this.setState={billDataArray: billDataArray}
+    console.log('potatoes: ', billDataArray);
   }
 
+  // convertDataObjectToArray() {
+  //   const { billData } = this.props;
+  //
+  //   var billDataArray = Object.keys(billData).map( key => {
+  //     return billData[key];
+  //   });
+  //   this.setState={billDataArray: billDataArray}
+  // }
+
   render() {
+    const { billData } = this.props;
+    if (!billData) {
+      return (
+        <div>
+          Loading ...
+        </div>
+      )
+    }
     return (
       <div className="row">
         <div className="col s4">
@@ -50,7 +70,15 @@ class BudgetRings extends Component {
   };
 }
 
-export default BudgetRings;
+function mapStateToProps(state) {
+  return {
+    billData: state.bills,
+    spendingData: state.spendings,
+    savingData: state.savings
+  }
+}
+
+export default connect(mapStateToProps, {fetchSpendings, fetchBills, fetchSavings})(BudgetRings);
 
 const data = [
   {

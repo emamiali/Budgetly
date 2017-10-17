@@ -6,21 +6,14 @@ import BudgetRings from './BudgetRings';
 import BudgetContainer from './BudgetContainer';
 
 class Dashboard extends Component {
-  componentDidMount(){
-    this.props.fetchBills();
-  }
   render() {
     return (
       <div className="center-align">
-        <BudgetRings billData={this.props.bills}/>
+        <BudgetRings />
         <BudgetContainer />
       </div>
     );
   };
 }
 
-function mapStateToProps(state) {
-  return { bills: state.bills}
-}
-
-export default connect(mapStateToProps, actions)(Dashboard);
+export default connect(null, actions)(Dashboard);
