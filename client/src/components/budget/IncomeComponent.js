@@ -92,8 +92,17 @@ class IncomeComponent extends Component {
 
   render() {
     return (
-      <div className="row" style={IncomeComponentStyle}>
-        {this.renderTotal()}
+      <div style={IncomeComponentStyle} className='row'>
+        <div className="col s6 left-align">
+          <p><strong>Total Earning --- </strong>  </p>
+          <p><strong>Savings Goal --- </strong>   </p>
+          <p><strong>Total Savings --- </strong> </p>
+        </div>
+        <div className="col s6 left-align">
+          <p><strong>Total Spendings --- </strong>  </p>
+          <p><strong>Total Bills --- </strong> {this.props.totalBill} </p>
+          <p><strong>Remaining Funds --- </strong>  </p>
+        </div>
       </div>
     );
   };
