@@ -11,6 +11,9 @@ class SavingList extends Component {
   }
 
   renderSavings() {
+    if (_.isEmpty(this.props.savings)) {
+      return (<div> Add a savings</div>)
+    }
     return _.map(this.props.savings, saving => {
       return (
         <li className="collection-item" key={saving._id}>

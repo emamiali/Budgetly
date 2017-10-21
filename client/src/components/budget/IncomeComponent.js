@@ -57,6 +57,9 @@ class IncomeComponent extends Component {
       return ( <div>Loading ...</div> )
     }
 
+    if (!total.data[0]) {
+      return ( <div><p>Please Add Income and savings in the profile tab</p></div>)
+    }
     const income = total.data[0].income;
     const savingsGoal = total.data[0].savingsGoal;
     const remainingFunds = income - savingsGoal - totalBill - totalSpending;
@@ -89,8 +92,17 @@ class IncomeComponent extends Component {
 
   render() {
     return (
-      <div className="row" style={IncomeComponentStyle}>
-        {this.renderTotal()}
+      <div style={IncomeComponentStyle} className='row'>
+        <div className="col s6 left-align">
+          <p><strong>Total Earning --- </strong> {this.props.income} </p>
+          <p><strong>Savings Goal --- </strong> {this.props.savingsGoal} </p>
+          <p><strong>Total Savings --- </strong> {this.props.totalSaving}</p>
+        </div>
+        <div className="col s6 left-align">
+          <p><strong>Total Spendings --- </strong> {this.props.totalSpending} </p>
+          <p><strong>Total Bills --- </strong> {this.props.totalBill} </p>
+          <p><strong>Remaining Funds --- </strong> {this.props.remainingFunds} </p>
+        </div>
       </div>
     );
   };
