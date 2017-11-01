@@ -29,7 +29,6 @@ class Dashboard extends Component {
     const totalBill =
       billAmountArray.reduce((a, b) => a + b, 0);
 
-
     //Total Spending Logic
     const { spendings } = this.props;
 
@@ -71,9 +70,42 @@ class Dashboard extends Component {
 
     const remainingFunds = income - savingsGoal - totalBill - totalSpending;
 
+    const dataObject = {
+      billData: [
+        {
+          name: "Total Bill",
+          value: totalBill,
+          fill: "#053af5"
+        }, {
+          name: "Remaining Funds",
+          value: remainingFunds,
+          fill: '#96afbb'
+        }
+      ],
+      spendingData: [
+        {
+          name: "Total Spending",
+          value: totalSpending,
+          fill: "#25693a"
+        }, {
+          name: "Remaining Funds",
+          value: remainingFunds,
+          fill: '#96afbb'
+        }
+      ]
+    }
+
     return (
       <div className="center-align">
-        <BudgetRings billData={this.props.bills}/>
+        <BudgetRings
+          dataObject={dataObject}
+          totalBill={totalBill}
+          totalSpending={totalSpending}
+          totalSaving={totalSaving}
+          income={income}
+          savingsGoal ={savingsGoal}
+          remainingFunds={remainingFunds}
+        />
         <IncomeComponent
           totalBill={totalBill}
           totalSpending={totalSpending}

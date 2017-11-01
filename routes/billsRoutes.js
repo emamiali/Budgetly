@@ -4,7 +4,6 @@ const requireLogin = require('../middlewares/requireLogin');
 
 const Bill = mongoose.model('bills');
 
-
 module.exports = (app) => {
 
 app.use(bodyParser.urlencoded({ extended: true }));

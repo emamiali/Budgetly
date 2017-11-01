@@ -5,56 +5,66 @@ import { connect } from 'react-redux';
 import { fetchSpendings, fetchBills, fetchSavings } from '../../actions';
 
 class BudgetRings extends Component {
-  // convertDataObjectToArray() {
-  //   if (_.isEmpty(this.props.billData)){
-  //     console.error('Something Went Wrong with the Bill Data')
-  //   }
-  //
-  //   const { billData } = this.props;
-  //
-    // const billDataArray = Object.keys(billData).map( key => {
-    //   return billData[key];
-    // });
-  // }
+  constructor(props) {
+  super(props);
+  this.state = {
+      billData: [
+        {
+          name: "Total Bill",
+          value: this.props.totalBill,
+          fill: "#053af5"
+        }, {
+          name: "Remaining Funds",
+          value: this.props.remainingFunds,
+          fill: '#96afbb'
+        }
+      ],
+      spendingData: [
+        {
+          name: "Total Spending",
+          value: this.props.totalSpending,
+          fill: "#25693a"
+        }, {
+          name: "Remaining Funds",
+          value: this.props.remainingFunds,
+          fill: '#96afbb'
+        }
+      ]
+    } // end of state
+} // end of constructor
 
-  render() {
-    const { billData } = this.props;
+componentWillRecieveProps(nextProps){
+  console.log(nextProps);
+}
 
-    if (_.isEmpty(this.props.billData)) {
-      return (<div>Loading ... </div>)
-    }
-
-    const billDataArray = Object.keys(billData).map( key => {
-      return billData[key];
-    });
-
-    return (
-      <div className="row">
-        <div className="col s4">
-          <ResponsiveContainer width="100%" aspect={6.0/5.0}>
-            <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
-              <Pie dataKey='value' data={billDataArray} innerRadius='85%' outerRadius='95%' label />
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="col s4">
-          <ResponsiveContainer width="100%" aspect={6.0/5.0}>
-            <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
-              <Pie dataKey='value' data={data} innerRadius='85%' outerRadius='95%' label />
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-        <div className="col s4">
-          <ResponsiveContainer width="100%" aspect={6.0/5.0}>
-            <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
-              <Pie dataKey='value' data={data} innerRadius='85%' outerRadius='95%' label />
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
+render() {
+  return (
+    <div className="row">
+      <div className="col s4">
+        <ResponsiveContainer width="100%" aspect={6.0/5.0}>
+          <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
+            <Pie dataKey='value' data={this.state .billData} innerRadius='85%' outerRadius='95%' label />
+            <Tooltip />
+          </PieChart>
+        </ResponsiveContainer>
       </div>
+      <div className="col s4">
+        <ResponsiveContainer width="100%" aspect={6.0/5.0}>
+          <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
+            <Pie dataKey='value' data={this.state.spendingData} innerRadius='85%' outerRadius='95%' label />
+            <Tooltip />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div className="col s4">
+        <ResponsiveContainer width="100%" aspect={6.0/5.0}>
+          <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
+            <Pie dataKey='value' data={data} innerRadius='85%' outerRadius='95%' label />
+            <Tooltip />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
     );
   };
 }
@@ -68,6 +78,19 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, {fetchSpendings, fetchBills, fetchSavings})(BudgetRings);
+//
+// const data = [
+//   {
+//     name: "Total Bill",
+//     value: totalBill,
+//     fill: "#053af5"
+//   },
+//   {
+//     name: "Remaining Funds",
+//     value: remainingFunds,
+//     fill: 'rgb(150, 175, 187)'
+//   }
+// ]
 
 const data = [
   {
