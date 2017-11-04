@@ -21,7 +21,7 @@ To start the server please run ```npm run dev```
 
 #### Dependencies Used 
 ###### Server-Side 
-* Body-parser (capture data)
+* Body-parser
 * concurrently (run front-end and back-end server at the same time)
 * cookie-session (authentication)
 * Express (server)
