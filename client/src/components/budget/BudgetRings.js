@@ -33,17 +33,13 @@ class BudgetRings extends Component {
     } // end of state
 } // end of constructor
 
-componentWillRecieveProps(nextProps){
-  console.log(nextProps);
-}
-
 render() {
   return (
     <div className="row">
       <div className="col s4">
         <ResponsiveContainer width="100%" aspect={6.0/5.0}>
           <PieChart margin={{top: 30, right: 5, left: 30, bottom: 30}}>
-            <Pie dataKey='value' data={this.state .billData} innerRadius='85%' outerRadius='95%' label />
+            <Pie dataKey='value' data={this.state.billData} innerRadius='85%' outerRadius='95%' label />
             <Tooltip />
           </PieChart>
         </ResponsiveContainer>
