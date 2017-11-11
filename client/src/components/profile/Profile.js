@@ -9,7 +9,8 @@ class Profile extends Component {
     super(props);
     this.state= {
       newTotalFundsFormVisible: false,
-      addNewSavingsAndIncome: true
+      addNewSavingsAndIncome: true,
+      reRender: false
     }
     this.showNewTotalFundsForm = this.showNewTotalFundsForm.bind(this);
     this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
@@ -20,12 +21,13 @@ class Profile extends Component {
     this.props.fetchSavingsIncome();
   }
 
-
 //have to fix this issue, here.
   forceUpdateHandler(){
-    this.forceUpdate();
-    console.log('clicked');
+    this.setState({ reRender: true})
   }
+
+
+
 
   showNewTotalFundsForm(){
     this.setState({
