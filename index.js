@@ -12,7 +12,7 @@ require('./services/passport');
 
 
 // mongoose.connect(keys.mongoURI);
-mongoose.connect("mongodb://localhost/Budgetly");
+mongoose.connect("mongodb://localhost/Budgetly" || keys.mongoURI);
 
 const app = express();
 
