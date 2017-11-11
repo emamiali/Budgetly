@@ -33,20 +33,18 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <Header />
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/dashboard" component={Dashboard}/>
-              <Route exact path="/bills/new" component={BillsNew} />
-              <Route exact path ="/bills/:bill_id" component={BillShow} />
-              <Route exact path="/bills" component={Bills} />
-              <Route exact path="/spendings/new" component={SpendingNew} />
-              <Route exact path ="/spendings/:spending_id" component={SpendingShow} />
-              <Route exact path="/spendings" component={Spendings} />
-              <Route exact path="/savings/new" component={SavingNew} />
-              <Route exact path="/savings/:saving_id" component={SavingShow}/>
-              <Route exact path="/savings" component={Savings}/>
-              <Route exact path="/profile" component={Profile} />
-            </Switch>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/dashboard" component={Dashboard}/>
+            <Route exact path="/bills/new" component={BillsNew} />
+            <Route exact path ="/bills/:bill_id" component={BillShow} />
+            <Route exact path="/bills" component={Bills} />
+            <Route exact path="/spendings/new" component={SpendingNew} />
+            <Route exact path ="/spendings/:spending_id" component={SpendingShow} />
+            <Route exact path="/spendings" component={Spendings} />
+            <Route exact path="/savings/new" component={SavingNew} />
+            <Route exact path="/savings/:saving_id" component={SavingShow}/>
+            <Route exact path="/savings" component={Savings}/>
+            <Route exact path="/profile" component={Profile} />
           </div>
         </BrowserRouter>
       </div>
