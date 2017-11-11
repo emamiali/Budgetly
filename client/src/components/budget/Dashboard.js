@@ -8,11 +8,20 @@ import BudgetContainer from './BudgetContainer';
 import IncomeComponent from './IncomeComponent';
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      render: false
+    }
+  }
   componentDidMount(){
     this.props.fetchBills();
     this.props.fetchSpendings();
     this.props.fetchSavingsIncome();
     this.props.fetchSavings();
+    setTimeout(() => {
+      this.setState({ render: true });
+    }, 1000);
   }
 
   render() {
@@ -70,53 +79,33 @@ class Dashboard extends Component {
 
     const remainingFunds = income - savingsGoal - totalBill - totalSpending;
 
-    const dataObject = {
-      billData: [
-        {
-          name: "Total Bill",
-          value: totalBill,
-          fill: "#053af5"
-        }, {
-          name: "Remaining Funds",
-          value: remainingFunds,
-          fill: '#96afbb'
-        }
-      ],
-      spendingData: [
-        {
-          name: "Total Spending",
-          value: totalSpending,
-          fill: "#25693a"
-        }, {
-          name: "Remaining Funds",
-          value: remainingFunds,
-          fill: '#96afbb'
-        }
-      ]
-    }
-
+    if(this.state.render) {
     return (
-      <div className="center-align">
-        <BudgetRings
-          dataObject={dataObject}
-          totalBill={totalBill}
-          totalSpending={totalSpending}
-          totalSaving={totalSaving}
-          income={income}
-          savingsGoal ={savingsGoal}
-          remainingFunds={remainingFunds}
-        />
-        <IncomeComponent
-          totalBill={totalBill}
-          totalSpending={totalSpending}
-          totalSaving={totalSaving}
-          income={income}
-          savingsGoal ={savingsGoal}
-          remainingFunds={remainingFunds}
-        />
-        <BudgetContainer />
+        <div className="center-align">
+          <BudgetRings
+            totalBill={totalBill}
+            totalSpending={totalSpending}
+            totalSaving={totalSaving}
+            income={income}
+            savingsGoal ={savingsGoal}
+            remainingFunds={remainingFunds}
+          />
+          <IncomeComponent
+            totalBill={totalBill}
+            totalSpending={totalSpending}
+            totalSaving={totalSaving}
+            income={income}
+            savingsGoal ={savingsGoal}
+            remainingFunds={remainingFunds}
+          />
+          <BudgetContainer />
       </div>
     );
+  } else {
+    return (
+      <div>Loading???</div>
+    )
+  }
   };
 }
 
