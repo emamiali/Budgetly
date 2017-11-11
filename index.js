@@ -25,6 +25,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('/', (req, res) => {
+  res.send({ message: "Hello"});
+})
+
 require('./routes/authRoutes')(app);
 require('./routes/billsRoutes')(app);
 require('./routes/spendingsRoutes')(app);
