@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sleepy-forest-74616.herokuapp.com/",
   "proxy": {
     "/auth/google": {
       "target": "http://localhost:5000"
