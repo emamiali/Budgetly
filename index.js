@@ -11,8 +11,8 @@ require('./models/TotalAmount');
 require('./services/passport');
 
 
-// mongoose.connect(keys.mongoURI);
-mongoose.connect(keys.mongoURI);
+mongoose.connect('mongodb://localhost/Budgetly' || keys.mongoURI);
+// mongoose.connect('mongodb://localhost/Budgetly');
 
 const app = express();
 

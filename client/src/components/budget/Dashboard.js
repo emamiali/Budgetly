@@ -21,7 +21,7 @@ class Dashboard extends Component {
     this.props.fetchSavings();
     setTimeout(() => {
       this.setState({ render: true });
-    }, 1000);
+    }, 2000);
   }
 
   render() {
@@ -103,7 +103,7 @@ class Dashboard extends Component {
     );
   } else {
     return (
-      <div>Loading???</div>
+      <div style={{ textAlign: 'center'}}>Your App is loading Please Wait</div>
     )
   }
   };
