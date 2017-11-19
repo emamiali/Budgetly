@@ -11,26 +11,30 @@ app.use(bodyParser.json());
 
   app.get('/api/bills', requireLogin, function(req, res) {
     Bill
-    .find({ _user: req.user_id })
+    .find({})
+    .where({ _user: req.user.id})
     .exec( function(err, bills) {
       if (err || !bills ) {
         return res.status(404).send({ message: 'Bills Not found!!' });
-      }
+      }    
       res.send(bills);
     });
   });
 
   //add the authentication middleware so the req will have access to the user. and the user ID.
-  app.post('/api/bills', function (req, res) {
+  app.post('/api/bills', requireLogin, function (req, res) {
 
     const newBill = new Bill();
 
+    newBill._user = req.user.id;
     newBill.billTitle = req.body.title;
     newBill.billAmount = req.body.amount;
 
     newBill.save(function(err, bill) {
-      if (err)
+      if (err) {
         res.send(err);
+      }
+      console.log('this is the bill created: ', bill);
       res.json({
         message: 'Bill Successfully Added'
       });
