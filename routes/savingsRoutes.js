@@ -12,7 +12,8 @@ app.use(bodyParser.json());
 
   app.get('/api/savings', requireLogin, function(req, res) {
     Saving
-    .find({ _user: req.user_id })
+    .find({})
+    .where({ _user: req.user.id })
     .exec( function(err, savings) {
       if (err || !savings ) {
         return res.status(404).send({ message: 'Savings Not found!!' });
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 
     const newSaving = new Saving ();
 
+    newSaving._user = req.user.id;
     newSaving.savingTitle = req.body.title;
     newSaving.savingAmount = req.body.amount;
 

@@ -4,7 +4,6 @@ const requireLogin = require('../middlewares/requireLogin');
 
 const Spending = mongoose.model('spendings');
 
-
 module.exports = (app) => {
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -12,7 +11,8 @@ app.use(bodyParser.json());
 
   app.get('/api/spendings', requireLogin, function(req, res) {
     Spending
-    .find({ _user: req.user_id })
+    .find({})
+    .where({ _user: req.user.id })
     .exec( function(err, spendings) {
       if (err || !spendings ) {
         return res.status(404).send({ message: 'Spendings Not found!!' });
@@ -21,11 +21,11 @@ app.use(bodyParser.json());
     });
   });
 
-  //add the authentication middleware so the req will have access to the user. and the user ID.
   app.post('/api/spendings', requireLogin, function (req, res) {
 
     const newSpending = new Spending ();
 
+    newSpending._user = req.user.id;
     newSpending.spendingTitle = req.body.title;
     newSpending.spendingAmount = req.body.amount;
 

@@ -12,16 +12,15 @@ app.use(bodyParser.json());
   app.get('/api/bills', requireLogin, function(req, res) {
     Bill
     .find({})
-    .where({ _user: req.user.id})
+    .where({ _user: req.user.id })
     .exec( function(err, bills) {
       if (err || !bills ) {
         return res.status(404).send({ message: 'Bills Not found!!' });
-      }    
+      }
       res.send(bills);
     });
   });
 
-  //add the authentication middleware so the req will have access to the user. and the user ID.
   app.post('/api/bills', requireLogin, function (req, res) {
 
     const newBill = new Bill();
