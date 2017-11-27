@@ -40,9 +40,10 @@ app.use(bodyParser.json());
     });
   });
 
-  app.get('/api/bills/:bill_id', function(req, res) {
+  app.get('/api/bills/:bill_id', requireLogin, function(req, res) {
     Bill
       .findById(req.params.bill_id)
+      .where({ _user: req.user.id })
       .exec(function(err, foundBill) {
         if (err || !foundBill) {
           return res.status(404).send({ message: 'Bill Not found!!' });
@@ -53,7 +54,7 @@ app.use(bodyParser.json());
 
   app.put('/api/bills/:bill_id', requireLogin, function(req, res) {
     let query = {
-      _id: req.params.bill_id
+      bill_id: req.params.bill_id
     }
 
     if (req.user_id) {
@@ -72,7 +73,7 @@ app.use(bodyParser.json());
 
   app.delete('/api/bills/:bill_id', requireLogin, function(req, res) {
     let query = {
-      _id: req.params.bill_id
+      bill_id: req.params.bill_id
     }
 
     if (req.user_id) {
@@ -81,6 +82,7 @@ app.use(bodyParser.json());
 
     Bill
       .findOneAndRemove(query)
+      .when({ _user: req.user.id })
       .exec(function(err, bill) {
         if (err || !bill) {
           return res.status(404).send({ message: 'Failed to Delete Bill!!' });
